@@ -8,8 +8,8 @@
     <LangVersion>8.0</LangVersion>
     <Version>1.0.2</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>Daniel Diaz</Authors>
-    <Company>Daniel Diaz</Company>
+    <Authors>Daniel Diaz Granizo</Authors>
+    <Company>Daniel Diaz Granizo</Company>
     <Description>Console utilities</Description>
     <PackageTags>Console Utilities</PackageTags>
     <RepositoryType>Git</RepositoryType>

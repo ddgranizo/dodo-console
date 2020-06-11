@@ -1,5 +1,4 @@
 ﻿using Dodo.Console.Test.Models;
-using System;
 
 namespace Dodo.Console.Test
 {
@@ -8,7 +7,6 @@ namespace Dodo.Console.Test
         static void Main(string[] args)
         {
             var myInputData = ConsoleManager.ParseArguments<MyTestModel>(args);
-
         }
     }
 }
