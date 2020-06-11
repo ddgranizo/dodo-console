@@ -6,6 +6,6 @@ namespace Dodo.Console.Test.Models
 {
     public class MyTestModel
     {
-        public List<int> Paths { get; set; }
+        public Dictionary<int, string> Paths { get; set; }
     }
 }

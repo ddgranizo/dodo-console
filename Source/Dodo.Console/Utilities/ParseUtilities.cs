@@ -49,28 +49,60 @@ namespace Dodo.Console.Utilities
                 }
                 else if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>))
                 {
-                    var dataType = type.GetGenericArguments().First();
-                    var listType = typeof(List<>);
-                    var constructedListType = listType.MakeGenericType(dataType);
-                    var instance = Activator.CreateInstance(constructedListType);
-                    var methodInfo = type.GetMethod("Add");
-                    foreach (var item in valueString.Split(new char[] { ';' }))
-                    {
-                        var value = ParseBasicValueString(item, dataType);
-                        methodInfo.Invoke(instance, new object[] { value });
-                    }
-                    return instance;
+                    return GetGenericListImplementation(valueString, type);
+                }
+                else if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Dictionary<,>))
+                {
+                    return GetGenericDictionaryImplementation(valueString, type);
                 }
                 else
                 {
                     throw new NotImplementedException();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception($"Error parsing '{valueString}' into a '{type.Name}' value");
+                throw new Exception($"Error parsing '{valueString}' into a '{type.Name}' value. Error info: {ex.Message}");
             }
         }
 
+        private static object GetGenericDictionaryImplementation(string valueString, Type type)
+        {
+            var dataKeyType = type.GetGenericArguments().First();
+            var dataValueType = type.GetGenericArguments().Last();
+            var dictionaryType = typeof(Dictionary<,>);
+            var constructedDictionaryType = dictionaryType.MakeGenericType(dataKeyType, dataValueType);
+            var instance = Activator.CreateInstance(constructedDictionaryType);
+            var methodInfo = type.GetMethod("Add");
+            foreach (var item in valueString.Split(new char[] { ';' }))
+            {
+                var keyVaulueArray = item.Split(new char[] { '=' });
+                if (keyVaulueArray.Length != 2)
+                {
+                    throw new ArgumentException("Use paris of 'Key1=Value1;Key2=Value2' for implement dictionary data");
+                }
+                var keyPosition = keyVaulueArray[0];
+                var valuePosition = keyVaulueArray[1];
+                var key = ParseBasicValueString(keyPosition, dataKeyType);
+                var value = ParseBasicValueString(valuePosition, dataValueType);
+                methodInfo.Invoke(instance, new object[] { key, value });
+            }
+            return instance;
+        }
+
+        private static object GetGenericListImplementation(string valueString, Type type)
+        {
+            var dataType = type.GetGenericArguments().First();
+            var listType = typeof(List<>);
+            var constructedListType = listType.MakeGenericType(dataType);
+            var instance = Activator.CreateInstance(constructedListType);
+            var methodInfo = type.GetMethod("Add");
+            foreach (var item in valueString.Split(new char[] { ';' }))
+            {
+                var value = ParseBasicValueString(item, dataType);
+                methodInfo.Invoke(instance, new object[] { value });
+            }
+            return instance;
+        }
     }
 }
