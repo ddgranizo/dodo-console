@@ -6,14 +6,16 @@
 
   <PropertyGroup>
     <LangVersion>8.0</LangVersion>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Daniel Diaz</Authors>
     <Company>Daniel Diaz</Company>
     <Description>Console utilities</Description>
-    <PackageTags>Console,</PackageTags>
+    <PackageTags>Console Utilities</PackageTags>
     <RepositoryType>Git</RepositoryType>
     <PackageIcon>dodo.png</PackageIcon>
+    <RepositoryUrl>https://github.com/ddgranizo/dodo-console</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>

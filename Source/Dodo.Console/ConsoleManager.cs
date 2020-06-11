@@ -8,7 +8,7 @@ namespace Dodo.Console
 {
     public static class ConsoleManager
     {
-        public static T GetInitialData<T>(string[] args)
+        public static T ParseArguments<T>(string[] args)
         {
             var argsList = args.ToList();
             var instance = (T)Activator.CreateInstance(typeof(T));

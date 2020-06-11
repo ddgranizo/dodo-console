@@ -7,7 +7,7 @@ namespace Dodo.Console.Test
     {
         static void Main(string[] args)
         {
-            var myInputData = ConsoleManager.GetInitialData<MyTestModel>(args);
+            var myInputData = ConsoleManager.ParseArguments<MyTestModel>(args);
 
         }
     }
