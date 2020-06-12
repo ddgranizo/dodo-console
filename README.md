@@ -55,3 +55,4 @@ You can use string parse into the following types
 |Guid         |Used Guid.Parse()                                                 |
 |List<>       |Parse list of any of types above                                  |
 |Dictionary<,>|Parse dictionary with any of types above for key and values       |
+|Enum         |To be developed                                                   |
