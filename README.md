@@ -5,7 +5,7 @@ Basic utilities for console aplications
 ## Parse input args
 
 Parse args array into a typed class object. 
-Usage:
+Usage: 
 
 ``` [C#]
 namespace Dodo.Console.Test
